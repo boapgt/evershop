@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -8,8 +8,8 @@ COPY package*.json .
 COPY packages ./packages
 COPY translations ./translations
 
-# 创建必要的目录
-RUN mkdir -p config
+# 创建必要的目录和配置文件
+RUN mkdir -p config && echo '{}' > config/production.json
 
 RUN npm install
 # 先编译 postgres-query-builder 包
