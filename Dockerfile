@@ -8,8 +8,16 @@ COPY package*.json .
 COPY packages ./packages
 COPY translations ./translations
 
+# 创建必要的目录
+RUN mkdir -p config
+
 RUN npm install
-RUN npm run compile && npm run build
+# 先编译 postgres-query-builder 包
+RUN npm run compile:db
+# 然后编译主应用
+RUN npm run compile
+# 最后执行构建
+RUN npm run build
 
 EXPOSE 3000
 
