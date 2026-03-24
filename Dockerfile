@@ -2,7 +2,11 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN npm install -g npm@9
+# RUN npm install -g npm@9
+
+RUN node --version
+RUN npm --version
+#RUN npm update
 
 COPY package*.json .
 COPY packages ./packages
